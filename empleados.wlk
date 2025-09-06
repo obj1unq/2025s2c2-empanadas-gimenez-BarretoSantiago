@@ -42,12 +42,15 @@ object baigorria {
     method totalEmpanadas(){
         return empanadasVendidas
     }
-    method sueldo(){
-        dineroAcumulado = dineroAcumulado + (empanadasVendidas * 15)
+    method cobrar(cantidad){
+        dineroAcumulado = dineroAcumulado + (cantidad)
         sueldoBase = sueldoBase + dineroAcumulado
         dineroAcumulado = 0
         empanadasVendidas = 0
         return sueldoBase
+    }
+    method sueldo(){
+        return empanadasVendidas * 15
     }
     method totalCobrado(){
         return sueldoBase
@@ -58,6 +61,7 @@ object gimenez {
     var fondos = 300000
     method pagarA(empleado){
         fondos = fondos - empleado.sueldo()
+        empleado.cobrar(empleado.sueldo())
     }
     method fondoActual(){
         return fondos
